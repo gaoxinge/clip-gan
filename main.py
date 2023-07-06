@@ -21,7 +21,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 device = torch.device(device)
 
 model, preprocess = clip.load("ViT-B/32", device=device)
-text = clip.tokenize(["a black cat"]).to(device)
+text = clip.tokenize(["a cat"]).to(device)
 
 with dnnlib.util.open_url("temp/pkl/stylegan3-r-afhqv2-512x512.pkl") as f:
     G = legacy.load_network_pkl(f)['G_ema'].to(device)
@@ -35,7 +35,7 @@ with dnnlib.util.open_url("temp/pkl/stylegan3-r-afhqv2-512x512.pkl") as f:
         loss, _ = model(image, text)
         loss = 1 / loss
         loss = loss[0][0]
-        print(loss.detach().cpu().numpy())
+        print(i, loss.detach().cpu().numpy())
         loss.backward()
         optimizer.step()
         
