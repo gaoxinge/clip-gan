@@ -1,0 +1,8 @@
+[submodule "CLIP"]
+	path = CLIP
+	url = https://github.com/gaoxinge/CLIP.git
+	branch = main
+[submodule "stylegan3"]
+	path = stylegan3
+	url = https://github.com/gaoxinge/stylegan3.git
+	branch = dev
